@@ -6,29 +6,34 @@ export default class Tabs extends Component {
     tabSelect = name => {
         this.isControlled ? this.props.onChangeTab(name) : this.setState(() => ({currentTab: name}));
     }
+    isControlled = (typeof this.props.tab !== 'undefined') || (typeof this.props.onChangeTab !== 'undefined');
     get currentTab() { return this.isControlled ? this.props.tab : this.state.currentTab };
     componentWillMount() {
-        this.isControlled = (typeof this.value !== 'undefined') || (typeof this.onChangeTab !== 'undefined');
         let self = this;
 
         class TabLink extends Component {
-            onClick = () => {
+            onClick = evt => {
+                evt.preventDefault();
                 if (this.props.onClick){
                     this.props.onClick();
                 }
                 self.tabSelect(this.props.tab);
             }
             render() {
-                let {children, onClick, tab, ...rest} = this.props;
+                let {children, onClick, href, tab, ...rest} = this.props;
                 return (
-                    <a onClick={this.onClick}>{children}</a>
+                    <a href={href || `#${tab}`} onClick={this.onClick}>{children}</a>
                 );
             }
         }
         class TabHeader extends Component {
             render() {
-                let {children: renderTabHeader} = this.props;
-                return renderTabHeader({isActive: self.currentTab == this.props.tab});
+                let {render, children: child} = this.props,
+                    propsToPass = {isActive: self.currentTab == this.props.tab};
+
+                return render
+                    ? render(propsToPass)
+                    : cloneElement(Children.only(child), propsToPass);
             }
         }
         class TabPane extends Component {

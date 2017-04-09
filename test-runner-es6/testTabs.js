@@ -4,29 +4,71 @@ import {render} from 'react-dom';
 import Tabs from '../src/tabs';
 
 class RunIt extends Component {
-    state = {counterVal: 0, x: 0};
+    state = {controlledTabA: 'a'}
+    setTabA = name => this.setState({controlledTabA: name});
     render() {
         return (
             <div style={{margin: '30px'}}>
-                <Tabs>
+                <Tabs defaultTab='b'>
                     {({TabLink, TabHeader, TabPane}) => (
                         <div>
                             <ul className='nav nav-tabs'>
-                                <TabHeader tab='a'>{({isActive}) => (
+                                <TabHeader tab='a' render={({isActive}) => (
                                     <li className={isActive ? ' active ' : ''}>
                                         <TabLink tab='a'>Tab A</TabLink>
                                     </li>
-                                 )}</TabHeader>
-                                <TabHeader tab='b'>{({isActive}) => (
+                                 )} />
+                                <TabHeader tab='b' render={({isActive}) => (
                                     <li className={isActive ? ' active ' : ''}>
                                         <TabLink tab='b'>Tab B</TabLink>
                                     </li>
-                                )}</TabHeader>
-                                <TabHeader tab='c'>{({isActive}) => (
+                                )} />
+                                <TabHeader tab='c' render={({isActive}) => (
                                     <li className={isActive ? ' active ' : ''}>
                                         <TabLink tab='c'>Tab C</TabLink>
                                     </li>
-                                )}</TabHeader>
+                                )} />
+                            </ul>
+                            <div className='tab-content'>
+                                <TabPane tab='a'>{({isActive}) => (
+                                    <div className={'tab-pane ' + (isActive ? ' active in ' : '')}>
+                                        This is tab A
+                                    </div>
+                                )}</TabPane>
+                                <TabPane tab='b'>{({isActive}) => (
+                                    <div className={'tab-pane ' + (isActive ? ' active in ' : '')}>
+                                        This is tab B
+                                    </div>
+                                )}</TabPane>
+                                <TabPane tab='c'>{({isActive}) => (
+                                    <div className={'tab-pane ' + (isActive ? ' active in ' : '')}>
+                                        This is tab C
+                                    </div>
+                                )}</TabPane>
+                            </div>
+                        </div>
+                    )}
+                </Tabs>
+                <br /><br />
+                <Tabs tab={this.state.controlledTabA} onChangeTab={this.setTabA}>
+                    {({TabLink, TabHeader, TabPane}) => (
+                        <div>
+                            <ul className='nav nav-tabs'>
+                                <TabHeader tab='a' render={({isActive}) => (
+                                    <li className={isActive ? ' active ' : ''}>
+                                        <TabLink tab='a'>Tab A</TabLink>
+                                    </li>
+                                 )} />
+                                <TabHeader tab='b' render={({isActive}) => (
+                                    <li className={isActive ? ' active ' : ''}>
+                                        <TabLink tab='b'>Tab B</TabLink>
+                                    </li>
+                                )} />
+                                <TabHeader tab='c' render={({isActive}) => (
+                                    <li className={isActive ? ' active ' : ''}>
+                                        <TabLink tab='c'>Tab C</TabLink>
+                                    </li>
+                                )} />
                             </ul>
                             <div className='tab-content'>
                                 <TabPane tab='a'>{({isActive}) => (
