@@ -38,9 +38,13 @@ export default class Tabs extends Component {
         }
         class TabPane extends Component {
             render() {
-                let {children: renderTabPane} = this.props;
+                let {render, children: child} = this.props,
+                    propsToPass = {isActive: self.currentTab == this.props.tab};
+
                 return (self.currentTab == this.props.tab) || this.props.renderInActiveTabs
-                    ? renderTabPane({isActive: self.currentTab == this.props.tab})
+                    ? render 
+                        ? render({isActive: self.currentTab == this.props.tab})
+                        : cloneElement(Children.only(child), propsToPass)
                     : null;
             }
         }

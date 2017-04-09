@@ -30,21 +30,21 @@ class RunIt extends Component {
                                 )} />
                             </ul>
                             <div className='tab-content'>
-                                <TabPane tab='a'>{({isActive}) => (
+                                <TabPane tab='a' render={({isActive}) => (
                                     <div className={'tab-pane ' + (isActive ? ' active in ' : '')}>
                                         This is tab A
                                     </div>
-                                )}</TabPane>
-                                <TabPane tab='b'>{({isActive}) => (
+                                )} />
+                                <TabPane tab='b'render={({isActive}) => (
                                     <div className={'tab-pane ' + (isActive ? ' active in ' : '')}>
                                         This is tab B
                                     </div>
-                                )}</TabPane>
-                                <TabPane tab='c'>{({isActive}) => (
+                                )} />
+                                <TabPane tab='c'render={({isActive}) => (
                                     <div className={'tab-pane ' + (isActive ? ' active in ' : '')}>
                                         This is tab C
                                     </div>
-                                )}</TabPane>
+                                )} />
                             </div>
                         </div>
                     )}
@@ -71,21 +71,21 @@ class RunIt extends Component {
                                 )} />
                             </ul>
                             <div className='tab-content'>
-                                <TabPane tab='a'>{({isActive}) => (
+                                <TabPane tab='a'render={({isActive}) => (
                                     <div className={'tab-pane ' + (isActive ? ' active in ' : '')}>
                                         This is tab A
                                     </div>
-                                )}</TabPane>
-                                <TabPane tab='b'>{({isActive}) => (
+                                )} />
+                                <TabPane tab='b'render={({isActive}) => (
                                     <div className={'tab-pane ' + (isActive ? ' active in ' : '')}>
                                         This is tab B
                                     </div>
-                                )}</TabPane>
-                                <TabPane tab='c'>{({isActive}) => (
+                                )} />
+                                <TabPane tab='c'render={({isActive}) => (
                                     <div className={'tab-pane ' + (isActive ? ' active in ' : '')}>
                                         This is tab C
                                     </div>
-                                )}</TabPane>
+                                )} />
                             </div>
                         </div>
                     )}
