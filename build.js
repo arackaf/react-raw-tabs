@@ -15,9 +15,9 @@ var babelOptions = {
     presets: ['react', ['es2015', {modules: false}], 'stage-2']
 };
 
-gulp.src('./src-es6/**/*.js', { base: './' })
+gulp.src('./src/**/*.js', { base: './' })
     .pipe(gulpBabel(babelOptions))
-    .pipe(rename(path => { path.dirname = path.dirname.replace(/src-es6/, 'src-dist')} ))
+    .pipe(rename(path => { path.dirname = path.dirname.replace(/src/, 'lib')} ))
     .pipe(gulp.dest(''))
     .pipe(gprint(function(filePath){ return "File processed: " + filePath; }))
     .on('end', runRollup);
@@ -37,7 +37,7 @@ const getRollup = entry =>
 
 function runRollup(){
     Promise
-        .resolve(getRollup('src-es6/tabs.js'))
+        .resolve(getRollup('src/tabs.js'))
         .then(library => 
             Promise.all([
                 library.write({ format: 'cjs', dest: './dist/react-raw-tabs.js' }),

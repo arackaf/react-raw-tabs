@@ -6,16 +6,17 @@ var gulp = require('gulp'),
     babel = require('gulp-babel');
 
 var babelOptions = {
-    presets: ['react', 'es2015', 'stage-2']
+    presets: ['react', ['es2015', {modules: false}], 'stage-2'],
+    plugins: ['external-helpers']
 };
 
 //transpilation is a bit of a mess right now :\
-var paths = ['./src-es6/**/*.js', './test-runner-es6/**/*.js'];
+var paths = ['./src/**/*.js', './test-runner-es6/**/*.js'];
 
 gulp.task('transpile-all', function () {
     gulp.src(paths, { base: './' })
         .pipe(babel(babelOptions))
-        .pipe(rename(path => { path.dirname = path.dirname.replace(/src-es6/, 'src').replace(/test-runner-es6/, 'test-runner')} ))
+        .pipe(rename(path => { path.dirname = path.dirname.replace(/src/, 'lib').replace(/test-runner-es6/, 'test-runner')} ))
         .pipe(gulp.dest(''))
         .pipe(gprint(function(filePath){ return "File processed: " + filePath; })); 
 });
@@ -42,7 +43,7 @@ gulp.task('transpile-watch', function() {
                     }
                 }))
                 .pipe(babel(babelOptions))
-                .pipe(rename(path => { path.dirname = path.dirname.replace(/src-es6/, 'src').replace(/test-runner-es6/, 'test-runner')} ))
+                .pipe(rename(path => { path.dirname = path.dirname.replace(/src/, 'lib').replace(/test-runner-es6/, 'test-runner')} ))
                 .pipe(gulp.dest(''))
                 .pipe(gprint(function(filePath){ return "File processed: " + filePath; }));
         }
