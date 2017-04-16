@@ -36,5 +36,9 @@
     "rollup-plugin-babel": "2.7.1",
     "rollup-plugin-node-resolve": "2.0.0",
     "systemjs": "0.19.31"
+  },
+  "dependencies": {
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.2"
   }
 }
