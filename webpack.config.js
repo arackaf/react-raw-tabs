@@ -1,20 +1,15 @@
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var path = require('path');
 var webpack = require('webpack');
-var noVisualization = process.env.NODE_ENV === 'production' 
-        || process.argv.slice(-1)[0] == '-p'
-        || process.argv.some(arg => arg.indexOf('webpack-dev-server') >= 0);
 
 module.exports = {
     entry: {
-        enter: './enter/enter.js',
-        view: './view/view.js'
+        runTabs: './test-runner/testTabs.js'
     },
     output: {
         filename: '[name]-bundle.js',
         chunkFilename: '[name]-chunk.js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: 'dist/'
+        path: path.resolve(__dirname, 'webpack-output'),
+        publicPath: 'webpack-output/'
     },
     resolve: {
         modules: [
@@ -29,24 +24,16 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['react', 'es2015', 'stage-2'],
-                    plugins: ['transform-decorators-legacy']
+                    presets: ['react', 'es2015', 'stage-2']
                 }
             }
         ]
     },
     plugins: [
-        // (!noVisualization ? 
-        //     new BundleAnalyzerPlugin({
-        //         analyzerMode: 'static'
-        //     }) : null),
     ].filter(p => p),
     devServer: {
         proxy: {
-            "/enter": "http://localhost:3000",
-            "/view": "http://localhost:3000",
-            "/workout": "http://localhost:3000",
-            "/tag": "http://localhost:3000"
+
         }
     }
 };
