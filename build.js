@@ -37,11 +37,11 @@ const getRollup = entry =>
 
 function runRollup(){
     Promise
-        .resolve(getRollup('src-es6/library.js'))
+        .resolve(getRollup('src-es6/tabs.js'))
         .then(library => 
             Promise.all([
-                library.write({ format: 'cjs', dest: './dist/simple-react-bootstrap.js' }),
-                library.write({ format: 'iife', dest: './dist/simple-react-bootstrap-script-tag.js', moduleName: 'SimpleReactBootstrap', globals: { react: 'React', 'react-dom': 'ReactDOM' } })
+                library.write({ format: 'cjs', dest: './dist/react-raw-tabs.js' }),
+                library.write({ format: 'iife', dest: './dist/react-raw-tabs-script-tag.js', moduleName: 'ReactRawTabs', globals: { react: 'React', 'react-dom': 'ReactDOM' } })
             ])
         ).then(() => {
             gulp.src(['./dist/**/*.js'], { base: './' })
