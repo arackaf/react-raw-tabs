@@ -13,7 +13,6 @@ const gprint = require('gulp-print');
 
 var babelOptions = {
     presets: ['react', ['es2015', {modules: false}], 'stage-2'],
-	plugins: ['external-helpers']
 };
 
 gulp.src('./src/**/*.js', { base: './' })

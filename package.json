@@ -1,8 +1,8 @@
 {
   "name": "react-raw-tabs",
-  "version": "0.0.1-beta3",
+  "version": "0.0.1-beta5",
   "description": "Raw react tabs component",
-  "main": "./src-dist/library.js",
+  "main": "./lib/tabs.js",
   "scripts": {
     "start": "webpack-dev-server",
     "prepublish": "node build.js"
