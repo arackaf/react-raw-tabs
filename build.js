@@ -12,7 +12,8 @@ const rename = require('gulp-rename');
 const gprint = require('gulp-print');
 
 var babelOptions = {
-    presets: ['react', ['es2015', {modules: false}], 'stage-2']
+    presets: ['react', ['es2015', {modules: false}], 'stage-2'],
+	plugins: ['external-helpers']
 };
 
 gulp.src('./src/**/*.js', { base: './' })
@@ -29,8 +30,7 @@ const getRollup = entry =>
         entry,
         plugins: [
             babel({
-                presets: ['react', ['es2015', { modules: false }], 'stage-2'],
-                plugins: ['external-helpers']
+                presets: ['react', ['es2015', { modules: false }], 'stage-2']
             })
         ]
     });
