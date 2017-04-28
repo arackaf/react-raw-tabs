@@ -1,6 +1,6 @@
 {
   "name": "react-raw-tabs",
-  "version": "0.0.1-beta5",
+  "version": "0.0.1",
   "description": "Raw react tabs component",
   "main": "./lib/tabs.js",
   "scripts": {

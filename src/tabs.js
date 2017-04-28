@@ -4,7 +4,7 @@ import {render} from 'react-dom';
 export default class Tabs extends Component {
     state = {currentTab: this.props.defaultTab};
     tabSelect = name => {
-        this.isControlled ? this.props.onChangeTab(name) : this.setState(() => ({currentTab: name}));
+        this.isControlled ? this.props.onChangeTab && this.props.onChangeTab(name) : this.setState(() => ({currentTab: name}));
     }
     isControlled = (typeof this.props.tab !== 'undefined') || (typeof this.props.onChangeTab !== 'undefined');
     get currentTab() { return this.isControlled ? this.props.tab : this.state.currentTab };
